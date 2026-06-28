@@ -6,10 +6,14 @@
   <title>さんすうのぼうけん</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<header class="header">
-      <h1>🐻 くまさんと数の世界を探検</h1>
-      <p>数直線を使って、ぼうけんしよう！</p>
+<div id="app">
+
+  <section id="home" class="screen active">
+    <header class="header">
+      <h1>🐻 さんすうのぼうけん</h1>
+      <p>あせらなくて大丈夫。自分で考えて、「できた！」をふやそう。</p>
     </header>
 
     <div class="status">
@@ -27,15 +31,21 @@
       <div class="bear">🐻</div>
 
       <button class="stage-card" onclick="chooseStage(0)">
-        🌊<br><b>せせらぎの川</b><br><span>10大きい・10小さい</span>
+        🌊<br>
+        <b>せせらぎの川</b><br>
+        <span>10大きい・10小さい</span>
       </button>
 
       <button class="stage-card" onclick="chooseStage(1)">
-        🌳<br><b>目盛りの森</b><br><span>ひと目盛り</span>
+        🌳<br>
+        <b>目盛りの森</b><br>
+        <span>ひと目盛り</span>
       </button>
 
       <button class="stage-card" onclick="chooseStage(2)">
-        🌰<br><b>どんぐりの丘</b><br><span>10のまとまり</span>
+        🌰<br>
+        <b>どんぐりの丘</b><br>
+        <span>10のまとまり</span>
       </button>
     </div>
 
@@ -49,7 +59,9 @@
     </div>
 
     <div class="question-box">
-      <p id="shopMessage">どんぐりでアイテムを買って、くまさんをおしゃれにしよう！</p>
+      <p id="shopMessage">
+        どんぐりでアイテムを買って、くまさんをおしゃれにしよう！
+      </p>
       <div id="shopBearPreview" class="bear-preview"></div>
     </div>
 
@@ -70,13 +82,15 @@
     <div id="gameArea"></div>
 
     <div id="resultBox" class="result-box hidden"></div>
-   <script src="script.js"></script>
-</body>
-</html>
 
     <div class="actions">
       <button onclick="checkAnswer()">こたえあわせ</button>
       <button onclick="newQuestion()">つぎの問題</button>
     </div>
   </section>
+
 </div>
+
+<script src="script.js"></script>
+</body>
+</html>
