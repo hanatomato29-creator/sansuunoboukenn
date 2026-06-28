@@ -1,0 +1,70 @@
+ <header class="header">
+      <h1>🐻 くまさんと数の世界を探検</h1>
+      <p>数直線を使って、ぼうけんしよう！</p>
+    </header>
+
+    <div class="status">
+      <div>🌰 どんぐり <span id="acornCount">0</span>こ</div>
+      <div>🎒 もちもの <span id="equipText">なし</span></div>
+    </div>
+
+    <div class="today-bear">
+      <h2>今日のくまさん</h2>
+      <div id="bearPreview" class="bear-preview"></div>
+      <button onclick="openShop()">森の仕立て屋さんへ</button>
+    </div>
+
+    <div class="map">
+      <div class="bear">🐻</div>
+
+      <button class="stage-card" onclick="chooseStage(0)">
+        🌊<br><b>せせらぎの川</b><br><span>10大きい・10小さい</span>
+      </button>
+
+      <button class="stage-card" onclick="chooseStage(1)">
+        🌳<br><b>目盛りの森</b><br><span>ひと目盛り</span>
+      </button>
+
+      <button class="stage-card" onclick="chooseStage(2)">
+        🌰<br><b>どんぐりの丘</b><br><span>10のまとまり</span>
+      </button>
+    </div>
+
+    <button class="start-btn" onclick="startGame()">ぼうけんに出る！</button>
+  </section>
+
+  <section id="shop" class="screen">
+    <div class="game-header">
+      <button onclick="goHome()">← マップへ</button>
+      <h2>森の仕立て屋さん</h2>
+    </div>
+
+    <div class="question-box">
+      <p id="shopMessage">どんぐりでアイテムを買って、くまさんをおしゃれにしよう！</p>
+      <div id="shopBearPreview" class="bear-preview"></div>
+    </div>
+
+    <div id="shopArea" class="shop-area"></div>
+  </section>
+
+  <section id="game" class="screen">
+    <div class="game-header">
+      <button onclick="goHome()">← マップへ</button>
+      <h2 id="stageTitle">せせらぎの川</h2>
+    </div>
+
+    <div class="question-box">
+      <p id="questionText">問題</p>
+      <p id="bearTalk">まずは考えてみよう！</p>
+    </div>
+
+    <div id="gameArea"></div>
+
+    <div id="resultBox" class="result-box hidden"></div>
+
+    <div class="actions">
+      <button onclick="checkAnswer()">こたえあわせ</button>
+      <button onclick="newQuestion()">つぎの問題</button>
+    </div>
+  </section>
+</div>
