@@ -473,3 +473,65 @@ body {
     font-size: 18px;
   }
 }
+/* ===========================
+   マップで選択中のステージ
+=========================== */
+
+.stage-card{
+  transition: all .25s;
+}
+
+.stage-card:hover{
+  transform: translateY(-6px);
+}
+
+.stage-card.selected{
+  background:#FFF6AE;
+  border:5px solid #FFB300;
+  box-shadow:0 8px 18px rgba(255,170,0,.35);
+}
+
+.stage-card.selected::after{
+  content:"✓ えらんでいるよ！";
+  display:block;
+  margin-top:8px;
+  color:#B35A00;
+  font-size:15px;
+  font-weight:bold;
+}
+
+
+/* ===========================
+   どんぐりの袋（最初は閉じる）
+=========================== */
+
+#bagArea{
+  display:none;
+  margin-top:20px;
+}
+
+#bagArea.open{
+  display:block;
+}
+
+#toggleBagButton{
+  display:block;
+  margin:20px auto;
+  padding:12px 24px;
+  border:none;
+  border-radius:30px;
+  background:#8BC34A;
+  color:white;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.2s;
+}
+
+#toggleBagButton:hover{
+  transform:scale(1.05);
+}
+
+#toggleBagButton::before{
+  content:"🌰 ";
+}
