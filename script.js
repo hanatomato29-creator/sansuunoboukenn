@@ -9,13 +9,10 @@ const shopItems = [
   { id: "cap", category: "hat", name: "青いキャップ", emoji: "🧢", cost: 8 },
   { id: "straw_hat", category: "hat", name: "麦わらぼうし", emoji: "👒", cost: 10 },
   { id: "crown", category: "hat", name: "王冠", emoji: "👑", cost: 30 },
-
   { id: "glasses", category: "face", name: "まるめがね", emoji: "👓", cost: 8 },
   { id: "sunglasses", category: "face", name: "サングラス", emoji: "🕶️", cost: 12 },
-
   { id: "scarf", category: "neck", name: "マフラー", emoji: "🧣", cost: 10 },
   { id: "ribbon", category: "neck", name: "リボン", emoji: "🎀", cost: 10 },
-
   { id: "backpack", category: "bag", name: "リュック", emoji: "🎒", cost: 15 }
 ];
 
@@ -30,7 +27,6 @@ let data = JSON.parse(localStorage.getItem("kuma_number_world") || `
 {
   "stage": 0,
   "acorn": 0,
-  "equip": "なし",
   "ownedItems": [],
   "wearing": {
     "hat": "",
@@ -48,6 +44,7 @@ if (data.star !== undefined) delete data.star;
 let question = {};
 let selected = null;
 let solved = false;
+let bagOpen = false;
 
 function saveData() {
   localStorage.setItem("kuma_number_world", JSON.stringify(data));
@@ -58,6 +55,14 @@ function updateStatus() {
   document.getElementById("acornCount").textContent = data.acorn;
   document.getElementById("equipText").textContent = getWearingText();
   renderBearPreview();
+  updateStageSelection();
+}
+
+function updateStageSelection() {
+  const cards = document.querySelectorAll(".stage-card");
+  cards.forEach((card, index) => {
+    card.classList.toggle("selected", index === data.stage);
+  });
 }
 
 function getWearingText() {
@@ -104,6 +109,7 @@ function renderBearPreview() {
 function chooseStage(stageNumber) {
   data.stage = stageNumber;
   saveData();
+  updateStageSelection();
 }
 
 function startGame() {
@@ -215,6 +221,7 @@ function pickRandom(list) {
 function newQuestion() {
   selected = null;
   solved = false;
+  bagOpen = false;
 
   document.getElementById("resultBox").classList.add("hidden");
   document.getElementById("resultBox").innerHTML = "";
@@ -401,6 +408,13 @@ function renderTen() {
       : `10この袋が${question.tens}こあるよ。全部でいくつ？`;
   html += `</div>`;
 
+  html += `
+    <button id="toggleBagButton" onclick="toggleBag()">
+      ${bagOpen ? "袋をとじる" : "袋を見てみる"}
+    </button>
+  `;
+
+  html += `<div id="bagArea" class="${bagOpen ? "open" : ""}">`;
   html += `<div class="bag-area"><div class="bag-grid">`;
 
   for (let i = 0; i < question.tens; i++) {
@@ -412,7 +426,7 @@ function renderTen() {
     `;
   }
 
-  html += `</div></div>`;
+  html += `</div></div></div>`;
 
   const choices = makeTenChoices();
 
@@ -423,6 +437,11 @@ function renderTen() {
   html += `</div>`;
 
   area.innerHTML = html;
+}
+
+function toggleBag() {
+  bagOpen = !bagOpen;
+  renderTen();
 }
 
 function makeTenChoices() {
@@ -475,3 +494,4 @@ function checkAnswer() {
 }
 
 updateStatus();
+updateStageSelection();
